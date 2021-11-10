@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <script src="index.js"></script>
+</head>
+<body>
+    <form action="/urlmade" method="POST">
+        <div class="inputboxdiv"><input id="inputboxweb" placeholder="Put in the link of the website that you want to send!" name="urlshortlink"></div>
+        <div class="submitbuttondiv"><button id="submitbuttonweb" onclick="urlSend()" type="submit">Submit</button></div>
+        <input style="display: none" name="randstringval" id="randstringval">
+    </form>
+
+</body>
+
+<style>
+    .inputboxdiv {
+        text-align: center;
+
+    }
+
+    #inputboxweb {
+        height: 30px;
+        width: 300px;
+        margin-top: 20%;
+        margin-bottom: 0%;
+    }
+
+    .submitbuttondiv {
+        text-align: center;
+    }
+
+    #submitbuttonweb {
+    
+        margin-top: 3%;
+    }
+</style>
+
+<script>
+
+
+    function makeid(length) {
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * 
+    charactersLength));
+    }
+    localStorage.setItem("randstring", result)
+    }
+
+  
+   
+    if(localStorage.getItem("randstring") == null) {
+        makeid(10)
+        console.log(localStorage.getItem("randstring"))
+        
+    } else {
+        console.log(localStorage.getItem("randstring"))
+    }
+
+    document.getElementById("randstringval").value = localStorage.getItem("randstring");
+    
+    function urlSend() {
+        localStorage.setItem("urlshort", document.getElementById("inputboxweb").value)
+
+    }
+
+
+</script>
+</html>
